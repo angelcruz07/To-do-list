@@ -1,5 +1,6 @@
 const DATE = document.querySelector('#date');
 const LIST = document.querySelector('#list');
+const elemento = document.querySelector('#elemento')
 const INPUT = document.querySelector('#input');
 const BTNENTER = document.querySelector('#enter');
 const CHECK = 'fa-check-circle';
@@ -8,11 +9,21 @@ const LINETHROUGH = 'line-through';
 
 let id;
 
-let list;
+let list = [];
 
 const date = new Date()
 
 DATE.innerHTML = date.toLocaleDateString('es-MX', {weekday: 'long', month: 'short', day:'numeric'})
+
+function isTask(list){ 
+    var mensajeElement = document.getElementById("task-list");
+    if(list.length === 0){ 
+        mensajeElement.textContent = "Aun no has agregado ninguna tarea";
+    }else {
+        mensajeElement.textContent = "Estas son tus tareas pendientes";
+    }
+}
+isTask(list);
 
 function addTask(task, id, realized, removed ){ 
 
@@ -23,14 +34,15 @@ function addTask(task, id, realized, removed ){
     const REALIZED = realized ?CHECK : UNCHECK;
     const LINE = realized ? LINETHROUGH: '';
     
-    const element = 
+    const elemento = 
     `<li id="elemento">
     <i class="far  ${REALIZED}" data="realizado" id="${id}"></i>
     <p class="text ${LINE}">${task}</p>
     <i class="fas fa-trash de"  data="eliminado" id="${id}"></i>
     </li>`
 
-    LIST.insertAdjacentHTML("beforeend", element);
+    LIST.insertAdjacentHTML("beforeend", elemento);
+    isTask(list);
 }
 
 
@@ -42,8 +54,23 @@ function realizedTask(element){
 }
 
 function removedTask(element){
-    element.parentNode.parentNode.removeChild(element.parentNode)
-    list[element.id].removed = true;
+    const taskId = element.id;
+    
+    // Verifica si el elemento existe en el array list
+    if (list[taskId]) {
+        element.parentNode.parentNode.removeChild(element.parentNode);
+        list[taskId].removed = true;
+        
+        // Comprueba si todas las tareas han sido eliminadas
+        if (list.every(task => task.removed)) {
+            list = []; // Vacía el array
+        }
+        
+        localStorage.setItem('List', JSON.stringify(list));
+        
+        isTask(list); // Llama a la función para actualizar el mensaje
+    }
+  
 }
 
 BTNENTER.addEventListener('click',  () =>{
@@ -60,6 +87,7 @@ BTNENTER.addEventListener('click',  () =>{
     localStorage.setItem('List',JSON.stringify(list));
     INPUT.value="";
     id++;
+    isTask(list);
 });
 
 
@@ -79,6 +107,7 @@ document.addEventListener('keyup', function(event){
         localStorage.setItem('List',JSON.stringify(list));
         INPUT.value="";   
         id++ 
+        isTask(list);
     }
 });    
 
@@ -91,6 +120,7 @@ LIST.addEventListener('click', function(event){
     }
     else if (elementData == 'eliminado'){ 
         removedTask(element);
+        isTask(list);
       } 
     localStorage.setItem('List',JSON.stringify(list));
  });
