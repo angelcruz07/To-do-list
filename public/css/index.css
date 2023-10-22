@@ -12,10 +12,10 @@
 
 }
 
-body{
-    background: linear-gradient(to bottom, var(--purple) , var(--blue-light));
-    height: 100vh;
+body{ 
     font-family: 'Prompt', sans-serif;
+    background: linear-gradient(to bottom, var(--purple) , var(--blue-light));
+    min-height: 100vh;
 
 }
 .container{ 
@@ -66,6 +66,8 @@ body{
  .add-task i:hover{ 
     cursor: pointer;
     transform: scale(1.1);
+    border: none;
+    border-color: #fff;
  }
 
  
@@ -104,11 +106,5 @@ body{
 .section-task i:hover{ 
     color: var(--blue-light);
     cursor: pointer;
-
 }
-
-.text {
-    color:var(--white);
-}
-
 
