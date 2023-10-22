@@ -1,0 +1,114 @@
+*{ 
+    box-sizing: border-box;
+    margin:0;
+    padding: 0;
+}
+:root{
+    --white: #fafafb;
+    --purple: #9a67ea;
+    --blue-light:#04d4c3;
+    --blue-dark: #2a72c2;
+    --green: #2c7b98;
+
+}
+
+body{
+    background: linear-gradient(to bottom, var(--purple) , var(--blue-light));
+    height: 100vh;
+    font-family: 'Prompt', sans-serif;
+
+}
+.container{ 
+    max-width: 80%;
+    width: 400px;
+    height: 600px;
+    margin: 0 auto;
+    padding: 0 2rem;
+
+}
+.profile h1{
+    color:var(--white); 
+}
+.profile span{ 
+    color:var(--white); 
+    letter-spacing: 1px;
+}
+#date{
+    color: var(--white);
+    padding: 50px 0 5px 0;
+}
+
+/* Add task */
+.add-task {
+    background-color: var(--white);
+    border-radius: 1rem;
+    height: 70px;
+    display: flex;
+    align-items: center;
+    padding: 10px 10px;
+    gap: 70px;
+    margin:40px 0;
+
+}
+.add-task input{ 
+    width: 100%;
+    height: 100%;
+    background-color: var(--white);
+    border: none;
+    border-radius: 8px;
+    padding-left:10px ;
+}
+.add-task i{
+    font-size: 50px;
+    color:var(--purple);
+
+ }
+ .add-task i:hover{ 
+    cursor: pointer;
+    transform: scale(1.1);
+ }
+
+ 
+ .add-task input:placeholder{
+    font-size: 1.1rem;
+    color: var(--purpele);
+ }
+
+.section-task h3{
+    color: var(--white);
+    margin-bottom:  1rem;
+}
+.section-task li{ 
+    display: flex;
+    border-radius: 1rem;
+    background: linear-gradient(to bottom,var(--blue-dark),var(--green));
+    padding:10px; 
+    align-items: center; 
+    justify-content: space-between;
+    color: var(--white);
+    margin: 5px 0;
+
+}
+.section-task >ul p{ 
+    font-size: 1.2rem;
+
+}
+.section-task i{ 
+    font-size: 25px;
+
+}
+.line-through{
+    text-decoration: line-through;
+    color : var(--blue-light)
+}
+.section-task i:hover{ 
+    color: var(--blue-light);
+    cursor: pointer;
+
+}
+
+.text {
+    color:var(--white);
+}
+
+
